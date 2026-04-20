@@ -18,6 +18,7 @@
             font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
             color: var(--accent-color);
             overflow: hidden;
+            /* 修正行動裝置 100vh 問題 */
             height: -webkit-fill-available;
         }
 
@@ -82,13 +83,30 @@
             gap: 40px; 
         }
 
-        /* 🚀 桌面版 HOME 按鈕樣式 (左上) */
+        .footer-signature {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.85rem;
+            color: var(--signature-color);
+            letter-spacing: 1px;
+            font-weight: 300;
+            text-align: center;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        #app-frame {
+            display: none;
+            width: 100%; height: 100vh; border: none;
+        }
+
+        /* 🚀 網頁版 HOME 按鈕 (維持左上) */
         #back-btn {
             position: fixed; 
             top: 20px; 
             left: 20px;
             display: none; 
-            padding: 8px 22px;
+            padding: 8px 18px;
             background: transparent;
             border: 1px solid var(--text-muted);
             color: var(--text-muted); 
@@ -97,26 +115,25 @@
             z-index: 1000;
             font-size: 0.75rem;
             transition: all 0.3s ease;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             backdrop-filter: blur(5px);
         }
+        
+        #back-btn:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background: rgba(162, 210, 255, 0.05);
+        }
 
-        /* 🚀 手機版自適應與 HOME 按鈕位置切換 (右下) */
+        /* 🚀 手機版自適應與 HOME 按鈕位置切換 */
         @media (max-width: 768px) {
-            h1 { font-size: 1.4rem; letter-spacing: 4px; }
-            .subtitle { font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; }
-            
-            .btn-group { 
-                flex-direction: column; 
-                width: 90%;
-                gap: 15px;
-            }
-            
-            .nav-btn { padding: 12px 20px; font-size: 0.95rem; width: 100%; text-align: center; }
+            h1 { font-size: 1.5rem; letter-spacing: 4px; }
+            .subtitle { font-size: 0.8rem; margin-bottom: 30px; }
+            .btn-group { flex-direction: column; width: 100%; align-items: center; gap: 15px; }
+            .nav-btn { width: 80%; padding: 12px 20px; }
             .btn-group:hover { gap: 15px; }
             .nav-btn:hover { transform: none; padding-left: 20px; padding-right: 20px; }
-            
-            .footer-signature { font-size: 0.7rem; width: 85%; }
+            .footer-signature { font-size: 0.7rem; bottom: 20px; }
 
             /* 手機版將按鈕移至右下角 */
             #back-btn {
@@ -126,28 +143,6 @@
                 right: 20px;
                 background: rgba(14, 17, 23, 0.8);
             }
-        }
-
-        .footer-signature {
-            position: absolute;
-            bottom: 30px;
-            font-size: 0.85rem;
-            color: var(--signature-color);
-            letter-spacing: 1px;
-            font-weight: 300;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        #app-frame {
-            display: none;
-            width: 100%; height: 100vh; border: none;
-        }
-        
-        #back-btn:hover {
-            color: var(--accent-color);
-            border-color: var(--accent-color);
-            background: rgba(162, 210, 255, 0.1);
         }
     </style>
 </head>
