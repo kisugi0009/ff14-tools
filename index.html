@@ -28,7 +28,7 @@
             width: 100%;
             height: 100vh;
             background: linear-gradient(180deg, #161b22 0%, #0e1117 100%);
-            position: absolute; /* 改用 absolute 確保切換時不干擾 */
+            position: absolute;
             top: 0; left: 0;
             z-index: 50;
         }
@@ -89,31 +89,37 @@
             line-height: 1.6;
         }
 
-        /* 計算機視窗容器 */
         #app-frame {
             display: none;
             width: 100%; height: 100vh; border: none;
             position: absolute; top: 0; left: 0; z-index: 1;
         }
 
-        /* 🚀 HOME 按鈕：預設網頁版 (左上) */
+        /* 🚀 修正後的 HOME 按鈕：純線條風格 */
         #back-btn {
             position: fixed; 
             top: 20px; 
             left: 20px;
             display: none; 
             padding: 8px 18px;
-            background: rgba(14, 17, 23, 0.5);
-            border: 1px solid var(--text-muted);
+            background: transparent; /* 確保無底色 */
+            border: 1px solid var(--text-muted); /* 僅線條 */
             color: var(--text-muted); 
             border-radius: 20px;
             cursor: pointer; 
             z-index: 1000;
             font-size: 0.75rem;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
             backdrop-filter: blur(5px);
         }
+        
+        #back-btn:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background: rgba(162, 210, 255, 0.05); /* 輕微透色 */
+        }
 
-        /* 🚀 手機版自適應與位置切換 */
         @media (max-width: 768px) {
             h1 { font-size: 1.5rem; letter-spacing: 4px; }
             .subtitle { font-size: 0.8rem; margin-bottom: 30px; }
@@ -123,11 +129,10 @@
             .nav-btn:hover { transform: none; }
             .footer-signature { font-size: 0.7rem; }
 
-            /* 手機版將按鈕移至右下角 */
+            /* 手機版：移動到右下角 */
             #back-btn {
                 top: auto; left: auto;
                 bottom: 25px; right: 20px;
-                background: rgba(14, 17, 23, 0.9);
             }
         }
     </style>
