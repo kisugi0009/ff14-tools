@@ -3,17 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FF14 發家致富計算機</title>
+    <title>FFXIV PROJECT - DIGITAL TOOLS</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #0e1117; }
-        iframe { width: 100%; height: 100vh; border: none; }
+        :root {
+            --accent-color: #a2d2ff;
+            --bg-dark: #0e1117;
+            --text-muted: #8b949e;
+            --signature-color: rgba(162, 210, 255, 0.4);
+        }
+
+        body, html { 
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            background-color: var(--bg-dark);
+            font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+            color: var(--accent-color);
+            overflow: hidden;
+        }
+
+        #menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(180deg, #161b22 0%, #0e1117 100%);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; z-index: 10; }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: 1px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover {
+            background: rgba(162, 210, 255, 0.1);
+            box-shadow: 0 0 15px rgba(162, 210, 255, 0.3);
+            letter-spacing: 2px;
+        }
+
+        /* 署名樣式 */
+        .footer-signature {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.85rem;
+            color: var(--signature-color);
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        #app-frame {
+            display: none;
+            width: 100%; height: 100vh; border: none;
+        }
+
+        #back-btn {
+            position: fixed; top: 20px; left: 20px;
+            display: none; padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted); 
+            cursor: pointer; z-index: 100;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
-    <iframe 
-        src="https://kisugi0009-ffxiv-richmaker.hf.space" 
-        allow="accelerometer; gyroscope; autoplay; payment; user-media; microphone; clipboard-read; clipboard-write"
-        sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads"
-    ></iframe>
+
+    <div id="menu-container">
+        <h1>Digital Tools</h1>
+        <div class="subtitle">FINAL FANTASY XIV ONLINE PROJECT</div>
+        
+        <div class="btn-group">
+            <button class="nav-btn" onclick="loadApp('https://kisugi0009-ffxiv-richmaker.hf.space')">Profit Calculator</button>
+            <button class="nav-btn" style="opacity: 0.5; cursor: default;">Future Tool</button>
+        </div>
+
+        <div class="footer-signature">
+            Developed by @鳳凰 時偃
+        </div>
+    </div>
+
+    <button id="back-btn" onclick="goHome()">← BACK TO MENU</button>
+    <iframe id="app-frame" src="" sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts allow-downloads"></iframe>
+
+    <script>
+        const menu = document.getElementById('menu-container');
+        const frame = document.getElementById('app-frame');
+        const backBtn = document.getElementById('back-btn');
+
+        function loadApp(url) {
+            menu.style.display = 'none';
+            frame.style.display = 'block';
+            backBtn.style.display = 'block';
+            frame.src = url;
+        }
+
+        function goHome() {
+            menu.style.display = 'flex';
+            frame.style.display = 'none';
+            backBtn.style.display = 'none';
+            frame.src = '';
+        }
+    </script>
 </body>
 </html>
