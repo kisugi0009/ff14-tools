@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FF XIV Tools</title>
+    <title>FINAL FANTASY XIV Tools</title>
     <style>
         :root {
             --accent-color: #a2d2ff;
@@ -32,7 +32,7 @@
 
         h1 {
             font-size: 2.2rem;
-            letter-spacing: 10px; /* 恢復英文質感的寬間距 */
+            letter-spacing: 10px;
             margin-bottom: 10px;
             font-weight: 300;
             text-transform: uppercase;
@@ -42,14 +42,13 @@
             color: var(--text-muted);
             font-size: 0.9rem;
             margin-bottom: 50px;
-            letter-spacing: 5px; /* 副標題也保持呼吸感 */
+            letter-spacing: 5px;
         }
 
-        /* 關鍵：實作推擠特效的容器 */
         .btn-group { 
             display: flex; 
             gap: 20px; 
-            transition: all 0.5s ease; /* 容器間距變化的平滑度 */
+            transition: all 0.5s ease;
             z-index: 10;
         }
 
@@ -60,22 +59,20 @@
             color: var(--accent-color);
             cursor: pointer;
             font-size: 1rem;
-            letter-spacing: 2px; /* 讓中文按鈕也有一點英文的疏離美 */
-            border-radius: 30px; /* 讓框不要太方正，改用膠囊型設計 */
+            letter-spacing: 2px;
+            border-radius: 30px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             white-space: nowrap;
         }
 
-        /* 關鍵：Hover 時產生的動態特效 */
         .nav-btn:hover {
             background: rgba(162, 210, 255, 0.15);
             box-shadow: 0 0 20px rgba(162, 210, 255, 0.3);
-            transform: scale(1.1); /* 放大自己 */
-            padding-left: 45px; /* 增加內距，產生視覺上的推擠感 */
+            transform: scale(1.1);
+            padding-left: 45px;
             padding-right: 45px;
         }
 
-        /* 當按鈕群組被 hover 時，增加整體間距產生推擠鄰居的效果 */
         .btn-group:hover {
             gap: 40px; 
         }
@@ -94,23 +91,35 @@
             width: 100%; height: 100vh; border: none;
         }
 
+        /* 修改後的返回按鈕：無底色、僅線條 */
         #back-btn {
-            position: fixed; top: 20px; left: 20px;
-            display: none; padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.3); 
-            border: 1px solid var(--text-muted);
+            position: fixed; 
+            top: 20px; 
+            left: 20px;
+            display: none; 
+            padding: 8px 18px;
+            background: transparent; /* 移除底色 */
+            border: 1px solid var(--text-muted); /* 僅保留細線條 */
             color: var(--text-muted); 
             border-radius: 20px;
-            cursor: pointer; z-index: 100;
-            font-size: 0.8rem;
-            backdrop-filter: blur(5px);
+            cursor: pointer; 
+            z-index: 100;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        
+        #back-btn:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background: rgba(162, 210, 255, 0.05); /* 滑過時僅透出一點點色彩 */
         }
     </style>
 </head>
 <body>
 
     <div id="menu-container">
-        <h1>FF XIV Tools</h1>
+        <h1>FINAL FANTASY XIV Tools</h1>
         <div class="subtitle">做好玩的小工具</div>
         
         <div class="btn-group">
@@ -123,7 +132,7 @@
         </div>
     </div>
 
-    <button id="back-btn" onclick="goHome()">← BACK TO MENU</button>
+    <button id="back-btn" onclick="goHome()">BACK TO MENU</button>
     <iframe id="app-frame" src="" sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts allow-downloads"></iframe>
 
     <script>
