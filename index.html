@@ -18,7 +18,6 @@
             font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
             color: var(--accent-color);
             overflow: hidden;
-            /* 修正手機瀏覽器高度計算 */
             height: -webkit-fill-available;
         }
 
@@ -83,19 +82,50 @@
             gap: 40px; 
         }
 
-        /* 手機版自適應優化 */
+        /* 🚀 桌面版 HOME 按鈕樣式 (左上) */
+        #back-btn {
+            position: fixed; 
+            top: 20px; 
+            left: 20px;
+            display: none; 
+            padding: 8px 22px;
+            background: transparent;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted); 
+            border-radius: 20px;
+            cursor: pointer; 
+            z-index: 1000;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 🚀 手機版自適應與 HOME 按鈕位置切換 (右下) */
         @media (max-width: 768px) {
             h1 { font-size: 1.4rem; letter-spacing: 4px; }
             .subtitle { font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; }
+            
             .btn-group { 
-                flex-direction: column; /* 手機按鈕改垂直排列 */
+                flex-direction: column; 
                 width: 90%;
                 gap: 15px;
             }
+            
             .nav-btn { padding: 12px 20px; font-size: 0.95rem; width: 100%; text-align: center; }
-            .btn-group:hover { gap: 15px; } /* 手機版停用推擠動畫以防誤觸 */
+            .btn-group:hover { gap: 15px; }
             .nav-btn:hover { transform: none; padding-left: 20px; padding-right: 20px; }
+            
             .footer-signature { font-size: 0.7rem; width: 85%; }
+
+            /* 手機版將按鈕移至右下角 */
+            #back-btn {
+                top: auto;
+                left: auto;
+                bottom: 25px; 
+                right: 20px;
+                background: rgba(14, 17, 23, 0.8);
+            }
         }
 
         .footer-signature {
@@ -112,25 +142,6 @@
         #app-frame {
             display: none;
             width: 100%; height: 100vh; border: none;
-        }
-
-        /* 🚀 關鍵修正：將返回按鈕移至右下角，避開側邊欄 */
-        #back-btn {
-            position: fixed; 
-            bottom: 25px; 
-            right: 20px;
-            display: none; 
-            padding: 8px 18px;
-            background: rgba(14, 17, 23, 0.8); /* 增加背景不透明度確保可視 */
-            border: 1px solid var(--text-muted);
-            color: var(--text-muted); 
-            border-radius: 20px;
-            cursor: pointer; 
-            z-index: 1000; /* 確保在最上層 */
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
         }
         
         #back-btn:hover {
@@ -152,12 +163,11 @@
         </div>
 
         <div class="footer-signature">
-            Developed by @鳳凰 時偃<br>
-            寫給自己玩的，不能保證正確，斟酌使用(･ω´･ )
+            Developed by @鳳凰 時偃｜寫給自己玩的，不能保證正確，斟酌使用(･ω´･ )
         </div>
     </div>
 
-    <button id="back-btn" onclick="goHome()">EXIT</button>
+    <button id="back-btn" onclick="goHome()">HOME</button>
     <iframe id="app-frame" src="" sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts allow-downloads"></iframe>
 
     <script>
