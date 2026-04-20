@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FFXIV PROJECT - DIGITAL TOOLS</title>
+    <title>FF XIV Tools</title>
     <style>
         :root {
             --accent-color: #a2d2ff;
@@ -31,8 +31,8 @@
         }
 
         h1 {
-            font-size: 2rem;
-            letter-spacing: 8px;
+            font-size: 2.2rem;
+            letter-spacing: 6px; /* 稍微縮減字距讓標題更緊湊 */
             margin-bottom: 10px;
             font-weight: 300;
             text-transform: uppercase;
@@ -40,9 +40,9 @@
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 1rem; /* 稍微調大一點點讓中文好讀 */
             margin-bottom: 40px;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
         }
 
         .btn-group { display: flex; gap: 15px; flex-wrap: wrap; z-index: 10; }
@@ -53,18 +53,16 @@
             background: transparent;
             color: var(--accent-color);
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: all 0.4s ease;
-            text-transform: uppercase;
         }
 
         .nav-btn:hover {
             background: rgba(162, 210, 255, 0.1);
             box-shadow: 0 0 15px rgba(162, 210, 255, 0.3);
-            letter-spacing: 2px;
+            transform: translateY(-2px); /* 增加一點點向上的動感 */
         }
 
-        /* 署名樣式 */
         .footer-signature {
             position: absolute;
             bottom: 30px;
@@ -93,12 +91,12 @@
 <body>
 
     <div id="menu-container">
-        <h1>Digital Tools</h1>
-        <div class="subtitle">FINAL FANTASY XIV ONLINE PROJECT</div>
+        <h1>FF XIV Tools</h1>
+        <div class="subtitle">做好玩的小工具</div>
         
         <div class="btn-group">
-            <button class="nav-btn" onclick="loadApp('https://kisugi0009-ffxiv-richmaker.hf.space')">Profit Calculator</button>
-            <button class="nav-btn" style="opacity: 0.5; cursor: default;">Future Tool</button>
+            <button class="nav-btn" onclick="loadApp('https://kisugi0009-ffxiv-richmaker.hf.space')">發家致富計算機</button>
+            <button class="nav-btn" style="opacity: 0.5; cursor: default;">未來的小工具</button>
         </div>
 
         <div class="footer-signature">
