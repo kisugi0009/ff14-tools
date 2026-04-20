@@ -32,7 +32,7 @@
 
         h1 {
             font-size: 2.2rem;
-            letter-spacing: 6px; /* 稍微縮減字距讓標題更緊湊 */
+            letter-spacing: 10px; /* 恢復英文質感的寬間距 */
             margin-bottom: 10px;
             font-weight: 300;
             text-transform: uppercase;
@@ -40,27 +40,44 @@
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1rem; /* 稍微調大一點點讓中文好讀 */
-            margin-bottom: 40px;
-            letter-spacing: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 50px;
+            letter-spacing: 5px; /* 副標題也保持呼吸感 */
         }
 
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; z-index: 10; }
+        /* 關鍵：實作推擠特效的容器 */
+        .btn-group { 
+            display: flex; 
+            gap: 20px; 
+            transition: all 0.5s ease; /* 容器間距變化的平滑度 */
+            z-index: 10;
+        }
 
         .nav-btn {
-            padding: 12px 25px;
-            border: 1px solid var(--accent-color);
+            padding: 15px 35px;
+            border: 1.5px solid var(--accent-color);
             background: transparent;
             color: var(--accent-color);
             cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.4s ease;
+            font-size: 1rem;
+            letter-spacing: 2px; /* 讓中文按鈕也有一點英文的疏離美 */
+            border-radius: 30px; /* 讓框不要太方正，改用膠囊型設計 */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
         }
 
+        /* 關鍵：Hover 時產生的動態特效 */
         .nav-btn:hover {
-            background: rgba(162, 210, 255, 0.1);
-            box-shadow: 0 0 15px rgba(162, 210, 255, 0.3);
-            transform: translateY(-2px); /* 增加一點點向上的動感 */
+            background: rgba(162, 210, 255, 0.15);
+            box-shadow: 0 0 20px rgba(162, 210, 255, 0.3);
+            transform: scale(1.1); /* 放大自己 */
+            padding-left: 45px; /* 增加內距，產生視覺上的推擠感 */
+            padding-right: 45px;
+        }
+
+        /* 當按鈕群組被 hover 時，增加整體間距產生推擠鄰居的效果 */
+        .btn-group:hover {
+            gap: 40px; 
         }
 
         .footer-signature {
@@ -79,12 +96,14 @@
 
         #back-btn {
             position: fixed; top: 20px; left: 20px;
-            display: none; padding: 8px 15px;
-            background: rgba(255, 255, 255, 0.05); 
+            display: none; padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.3); 
             border: 1px solid var(--text-muted);
             color: var(--text-muted); 
+            border-radius: 20px;
             cursor: pointer; z-index: 100;
             font-size: 0.8rem;
+            backdrop-filter: blur(5px);
         }
     </style>
 </head>
@@ -96,7 +115,7 @@
         
         <div class="btn-group">
             <button class="nav-btn" onclick="loadApp('https://kisugi0009-ffxiv-richmaker.hf.space')">發家致富計算機</button>
-            <button class="nav-btn" style="opacity: 0.5; cursor: default;">未來的小工具</button>
+            <button class="nav-btn" style="opacity: 0.4; cursor: default;">未來的小工具</button>
         </div>
 
         <div class="footer-signature">
