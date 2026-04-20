@@ -18,8 +18,6 @@
             font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
             color: var(--accent-color);
             overflow: hidden;
-            /* 修正行動裝置 100vh 問題 */
-            height: -webkit-fill-available;
         }
 
         #menu-container {
@@ -27,11 +25,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100%;
             height: 100vh;
             background: linear-gradient(180deg, #161b22 0%, #0e1117 100%);
-            position: relative;
-            padding: 20px;
-            box-sizing: border-box;
+            position: absolute; /* 改用 absolute 確保切換時不干擾 */
+            top: 0; left: 0;
+            z-index: 50;
         }
 
         h1 {
@@ -55,7 +54,6 @@
             display: flex; 
             gap: 20px; 
             transition: all 0.5s ease;
-            z-index: 10;
         }
 
         .nav-btn {
@@ -75,13 +73,9 @@
             background: rgba(162, 210, 255, 0.15);
             box-shadow: 0 0 20px rgba(162, 210, 255, 0.3);
             transform: scale(1.1);
-            padding-left: 45px;
-            padding-right: 45px;
         }
 
-        .btn-group:hover {
-            gap: 40px; 
-        }
+        .btn-group:hover { gap: 40px; }
 
         .footer-signature {
             position: absolute;
@@ -91,57 +85,49 @@
             letter-spacing: 1px;
             font-weight: 300;
             text-align: center;
-            padding: 0 20px;
+            width: 90%;
             line-height: 1.6;
         }
 
+        /* 計算機視窗容器 */
         #app-frame {
             display: none;
             width: 100%; height: 100vh; border: none;
+            position: absolute; top: 0; left: 0; z-index: 1;
         }
 
-        /* 🚀 網頁版 HOME 按鈕 (維持左上) */
+        /* 🚀 HOME 按鈕：預設網頁版 (左上) */
         #back-btn {
             position: fixed; 
             top: 20px; 
             left: 20px;
             display: none; 
             padding: 8px 18px;
-            background: transparent;
+            background: rgba(14, 17, 23, 0.5);
             border: 1px solid var(--text-muted);
             color: var(--text-muted); 
             border-radius: 20px;
             cursor: pointer; 
             z-index: 1000;
             font-size: 0.75rem;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
             backdrop-filter: blur(5px);
         }
-        
-        #back-btn:hover {
-            color: var(--accent-color);
-            border-color: var(--accent-color);
-            background: rgba(162, 210, 255, 0.05);
-        }
 
-        /* 🚀 手機版自適應與 HOME 按鈕位置切換 */
+        /* 🚀 手機版自適應與位置切換 */
         @media (max-width: 768px) {
             h1 { font-size: 1.5rem; letter-spacing: 4px; }
             .subtitle { font-size: 0.8rem; margin-bottom: 30px; }
             .btn-group { flex-direction: column; width: 100%; align-items: center; gap: 15px; }
             .nav-btn { width: 80%; padding: 12px 20px; }
             .btn-group:hover { gap: 15px; }
-            .nav-btn:hover { transform: none; padding-left: 20px; padding-right: 20px; }
-            .footer-signature { font-size: 0.7rem; bottom: 20px; }
+            .nav-btn:hover { transform: none; }
+            .footer-signature { font-size: 0.7rem; }
 
             /* 手機版將按鈕移至右下角 */
             #back-btn {
-                top: auto;
-                left: auto;
-                bottom: 25px; 
-                right: 20px;
-                background: rgba(14, 17, 23, 0.8);
+                top: auto; left: auto;
+                bottom: 25px; right: 20px;
+                background: rgba(14, 17, 23, 0.9);
             }
         }
     </style>
@@ -163,25 +149,23 @@
     </div>
 
     <button id="back-btn" onclick="goHome()">HOME</button>
-    <iframe id="app-frame" src="" sandbox="allow-forms allow-modals allow-popups allow-same-origin allow-scripts allow-downloads"></iframe>
+    <iframe id="app-frame" src=""></iframe>
 
     <script>
-        const menu = document.getElementById('menu-container');
-        const frame = document.getElementById('app-frame');
-        const backBtn = document.getElementById('back-btn');
-
         function loadApp(url) {
-            menu.style.display = 'none';
+            document.getElementById('menu-container').style.display = 'none';
+            const frame = document.getElementById('app-frame');
             frame.style.display = 'block';
-            backBtn.style.display = 'block';
             frame.src = url;
+            document.getElementById('back-btn').style.display = 'block';
         }
 
         function goHome() {
-            menu.style.display = 'flex';
+            document.getElementById('menu-container').style.display = 'flex';
+            const frame = document.getElementById('app-frame');
             frame.style.display = 'none';
-            backBtn.style.display = 'none';
             frame.src = '';
+            document.getElementById('back-btn').style.display = 'none';
         }
     </script>
 </body>
